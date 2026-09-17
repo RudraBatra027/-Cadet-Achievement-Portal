@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadet Achievement Portal | Sainik School Nalanda</title>
+
+<style>
+/* ==============================
+   RESET & BASE STYLES
+============================== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f4f6f9;
+    color:#172033;
+}
+
+/* ==============================
+   NAVBAR
+============================== */
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:9999;
+    padding:12px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(8,18,38,.94);
+    backdrop-filter:blur(12px);
+    box-shadow:0 5px 25px rgba(0,0,0,.3);
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.school-logo{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    object-fit:cover;
+    background:white;
+    border:2px solid white;
+    box-shadow:0 0 15px rgba(255,255,255,.2);
+}
+
+.logo-text{
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.logo-text small{
+    display:block;
+    margin-top:4px;
+    color:#cbd5e1;
+    font-size:10px;
+    letter-spacing:.5px;
+}
+
+.nav-buttons{
+    display:flex;
+    gap:7px;
+}
+
+.nav-buttons button{
+    border:none;
+    background:transparent;
+    color:white;
+    padding:10px 13px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.nav-buttons button:hover{
+    background:#2563eb;
+    transform:translateY(-2px);
+}
+
+/* ==============================
+   HERO
+============================== */
+.hero{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    padding:120px 20px 60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: linear-gradient(135deg, #020617, #0f172a, #172554, #1e3a8a);
+    background-size:400% 400%;
+    animation:gradientAnimation 12s ease infinite;
+}
+
+@keyframes gradientAnimation{
+    0%{ background-position:0% 50%; }
+    50%{ background-position:100% 50%; }
+    100%{ background-position:0% 50%; }
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    border-radius:50%;
+    background:rgba(37,99,235,.2);
+    top:-150px;
+    left:-120px;
+    animation:floatOne 8s ease-in-out infinite;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:rgba(220,38,38,.14);
+    right:-100px;
+    bottom:-100px;
+    animation:floatTwo 9s ease-in-out infinite;
+}
+
+@keyframes floatOne{
+    0%,100%{ transform:translate(0,0); }
+    50%{ transform:translate(50px,40px); }
+}
+
+@keyframes floatTwo{
+    0%,100%{ transform:translate(0,0); }
+    50%{ transform:translate(-40px,-30px); }
+}
+
+/* ==============================
+   HERO CONTENT
+============================== */
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:1150px;
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+    animation:heroAppear 1.2s ease;
+}
+
+@keyframes heroAppear{
+    from{ opacity:0; transform:translateY(50px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+.hero-text{ color:white; }
+
+.school-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 15px;
+    border-radius:30px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.25);
+    color:#dbeafe;
+    margin-bottom:20px;
+    font-size:14px;
+    animation:badgePulse 2.5s infinite;
+}
+
+@keyframes badgePulse{
+    0%,100%{ box-shadow:0 0 0 rgba(96,165,250,0); }
+    50%{ box-shadow:0 0 25px rgba(96,165,250,.25); }
+}
+
+.hero h1{
+    font-size:55px;
+    line-height:1.08;
+    margin-bottom:20px;
+}
+
+.hero h1 span{ color:#60a5fa; }
+
+.hero-description{
+    color:#dbeafe;
+    font-size:19px;
+    line-height:1.7;
+    margin-bottom:30px;
+    max-width:600px;
+}
+
+/* ==============================
+   BUTTONS
+============================== */
+.button-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.home-btn{
+    border:none;
+    padding:14px 22px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 7px 18px rgba(0,0,0,.2);
+}
+
+.home-btn:hover{
+    transform:translateY(-5px) scale(1.03);
+    box-shadow:0 12px 28px rgba(0,0,0,.3);
+}
+
+.home-btn:active{ transform:scale(.95); }
+
+.add-btn{ background:#22c55e; color:white; }
+.view-btn{ background:#2563eb; color:white; }
+.gallery-btn{ background:#8b5cf6; color:white; }
+.dashboard-btn{ background:#f59e0b; color:white; }
+.website-btn{ background:#dc2626; color:white; }
+
+/* ==============================
+   HERO LOGO CARD
+============================== */
+.hero-logo-area{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo-card{
+    width:390px;
+    height:390px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:35px;
+    backdrop-filter:blur(12px);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 30px 70px rgba(0,0,0,.35);
+    animation:logoFloat 5s ease-in-out infinite;
+}
+
+@keyframes logoFloat{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-12px); }
+}
+
+.hero-logo{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    background:white;
+    padding:4px;
+    box-shadow:0 0 40px rgba(255,255,255,.18);
+}
+
+.logo-card h2{
+    color:white;
+    margin-top:20px;
+    font-size:22px;
+    text-align:center;
+}
+
+.logo-card p{
+    color:#cbd5e1;
+    margin-top:6px;
+    text-align:center;
+    font-size:13px;
+}
+
+/* ==============================
+   SECTIONS & DASHBOARD
+============================== */
+.section{
+    max-width:1100px;
+    margin:auto;
+    padding:85px 20px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    font-size:34px;
+    color:#1e3a8a;
+    margin-bottom:8px;
+}
+
+.section-title p{
+    color:#64748b;
+    font-size:15px;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.stat-card{
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+.stat-card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:5px;
+    background:#2563eb;
+}
+
+.stat-card:hover{ transform:translateY(-8px); }
+
+.stat-icon{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.number{
+    color:#2563eb;
+    font-size:43px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+/* ==============================
+   FORMS & CARDS
+============================== */
+.card{
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.input-group label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+    color:#334155;
+}
+
+.input-group.full{ grid-column:1/-1; }
+
+.input-group input,
+.input-group textarea{
+    width:100%;
+    border:1px solid #cbd5e1;
+    border-radius:9px;
+    padding:13px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+}
+
+.input-group textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+}
+
+.submit-btn{
+    margin-top:18px;
+    padding:14px 25px;
+    border:none;
+    border-radius:9px;
+    background:#22c55e;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    background:#16a34a;
+    transform:translateY(-3px);
+}
+
+/* ==============================
+   ACHIEVEMENTS LIST & GALLERY
+============================== */
+.search-box{
+    width:100%;
+    padding:15px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    outline:none;
+    font-size:16px;
+    margin-bottom:25px;
+}
+
+.search-box:focus{ border-color:#2563eb; }
+
+.achievement-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.achievement{
+    background:white;
+    border-radius:16px;
+    padding:24px;
+    border-left:5px solid #2563eb;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    animation:achievementIn .5s ease;
+    overflow:hidden;
+}
+
+.card-images-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(100px, 1fr));
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.achievement-img{
+    width:100%;
+    height:110px;
+    object-fit:cover;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+@keyframes achievementIn{
+    from{ opacity:0; transform:translateY(20px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+.achievement h3{
+    color:#1e3a8a;
+    margin-bottom:12px;
+}
+
+.achievement p{
+    color:#475569;
+    margin:8px 0;
+    line-height:1.5;
+}
+
+.card-actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.edit-btn{
+    border:none;
+    background:#f59e0b;
+    color:white;
+    padding:9px 14px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.edit-btn:hover{ background:#d97706; }
+
+.delete-btn{
+    border:none;
+    background:#ef4444;
+    color:white;
+    padding:9px 14px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.delete-btn:hover{ background:#dc2626; }
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+    gap:20px;
+}
+
+.gallery-card{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+    transition:.3s;
+}
+
+.gallery-card:hover{
+    transform:translateY(-5px);
+}
+
+.gallery-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    cursor:pointer;
+    display:block;
+}
+
+.gallery-card-info{
+    padding:15px;
+}
+
+.gallery-card-info h4{
+    color:#1e3a8a;
+    font-size:15px;
+    margin-bottom:4px;
+}
+
+.gallery-card-info p{
+    font-size:12px;
+    color:#64748b;
+}
+
+.empty{
+    grid-column:1/-1;
+    background:white;
+    padding:50px;
+    text-align:center;
+    border-radius:18px;
+    color:#64748b;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+}
+
+/* ==============================
+   OFFICIAL WEBSITE & FOOTER
+============================== */
+.website-card{
+    margin-top:20px;
+    padding:30px;
+    border-radius:18px;
+    background:linear-gradient(135deg, #0f172a, #1e3a8a);
+    color:white;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+}
+
+.website-card h2{ margin-bottom:10px; }
+.website-card p{ color:#dbeafe; margin-bottom:20px; }
+
+.website-link{
+    display:inline-block;
+    text-decoration:none;
+    background:#dc2626;
+    color:white;
+    padding:13px 23px;
+    border-radius:9px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.website-link:hover{
+    background:#ef4444;
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+footer{
+    background:#020617;
+    color:white;
+    text-align:center;
+    padding:40px 20px;
+    margin-top:30px;
+}
+
+.footer-logo{
+    width:75px;
+    height:75px;
+    object-fit:cover;
+    border-radius:50%;
+    background:white;
+    padding:3px;
+    margin-bottom:12px;
+}
+
+footer h3{ margin-bottom:8px; }
+footer p{ color:#cbd5e1; margin:5px; font-size:14px; }
+
+.footer-bullets{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    color:#cbd5e1;
+    margin-top:10px;
+}
+
+.developer{
+    margin-top:20px;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.15);
+    color:#60a5fa;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    z-index:99999;
+    background:#0f172a;
+    color:white;
+    padding:15px 20px;
+    border-radius:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+    transform:translateY(100px);
+    opacity:0;
+    transition:.4s;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+@media(max-width:850px){
+    .hero-content{ grid-template-columns:1fr; text-align:center; }
+    .hero-description{ margin-left:auto; margin-right:auto; }
+    .button-container{ justify-content:center; }
+    .logo-card{ width:320px; height:320px; }
+    .hero-logo{ width:180px; height:180px; }
+    .hero h1{ font-size:42px; }
+}
+
+@media(max-width:650px){
+    .nav-buttons{ display:none; }
+    .logo-text{ font-size:13px; }
+    .hero{ padding-top:100px; }
+    .hero h1{ font-size:34px; }
+    .hero-description{ font-size:16px; }
+    .form-grid{ grid-template-columns:1fr; }
+    .input-group.full{ grid-column:auto; }
+    .section{ padding:65px 15px; }
+    .logo-card{ width:280px; height:280px; }
+    .hero-logo{ width:165px; height:165px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+    <div class="logo-area">
+        <img class="school-logo" id="navLogo" alt="Sainik School Nalanda Logo">
+        <div class="logo-text">
+            Sainik School Nalanda
+            <small>CADET ACHIEVEMENT PORTAL</small>
+        </div>
+    </div>
+    <div class="nav-buttons">
+        <button onclick="goTo('home')">Home</button>
+        <button onclick="goTo('add')">Add Achievement</button>
+        <button onclick="goTo('view')">View</button>
+        <button onclick="goTo('gallery')">Gallery</button>
+        <button onclick="goTo('dashboard')">Dashboard</button>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="hero-text">
+            <div class="school-badge">&#128737; Sainik School Nalanda</div>
+            <h1>Cadet <span>Achievement</span> Portal</h1>
+            <p class="hero-description">A digital platform to record, showcase and celebrate the achievements of cadets.</p>
+            <div class="button-container">
+                <button class="home-btn add-btn" onclick="goTo('add')">&#10133; Add Achievement</button>
+                <button class="home-btn view-btn" onclick="goTo('view')">&#128221; View Achievements</button>
+                <button class="home-btn gallery-btn" onclick="goTo('gallery')">&#127912; Photo Gallery</button>
+                <button class="home-btn dashboard-btn" onclick="goTo('dashboard')">&#128202; Dashboard</button>
+                <button class="home-btn website-btn" onclick="visitOfficialWebsite()">&#127760; Official Website</button>
+            </div>
+        </div>
+        <div class="hero-logo-area">
+            <div class="logo-card">
+                <img class="hero-logo" id="heroLogo" alt="Sainik School Nalanda Logo">
+                <h2>Sainik School Nalanda</h2>
+                <p>Ministry of Defence</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DASHBOARD SECTION -->
+<section class="section" id="dashboard">
+    <div class="section-title">
+        <h2>&#128202; Dashboard</h2>
+        <p>Achievement portal statistics</p>
+    </div>
+    <div class="dashboard">
+        <div class="stat-card">
+            <div class="stat-icon">&#127942;</div>
+            <div class="number" id="totalAchievements">0</div>
+            <p>Total Achievements</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">&#127894;</div>
+            <div class="number" id="totalCadets">0</div>
+            <p>Total Cadets</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">&#128197;</div>
+            <div class="number" id="totalYears">0</div>
+            <p>Achievement Years</p>
+        </div>
+    </div>
+    <div class="website-card">
+        <h2>&#127760; Sainik School Nalanda</h2>
+        <p>Visit the official Sainik School Nalanda website for news, notices, and updates.</p>
+        <a class="website-link" id="officialWebsiteLink" target="_blank" rel="noopener">Visit Official Website</a>
+    </div>
+</section>
+
+<!-- ADD ACHIEVEMENT SECTION -->
+<section class="section" id="add">
+    <div class="section-title">
+        <h2>&#10133; Add Achievement</h2>
+        <p>Enter details below. Create a password so you can edit or delete this post later.</p>
+    </div>
+    <div class="card">
+        <form id="achievementForm">
+            <input type="hidden" id="editId">
+            <input type="hidden" id="existingImages">
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Cadet Name</label>
+                    <input type="text" id="cadetName" placeholder="Enter cadet name" required>
+                </div>
+                <div class="input-group">
+                    <label>Roll Number</label>
+                    <input type="text" id="rollNumber" placeholder="Enter roll number" required>
+                </div>
+                <div class="input-group">
+                    <label>Achievement Title</label>
+                    <input type="text" id="achievementTitle" placeholder="Enter achievement title" required>
+                </div>
+                <div class="input-group">
+                    <label>Date / Year</label>
+                    <input type="text" id="achievementDate" placeholder="Example: 2026" required>
+                </div>
+                <div class="input-group full">
+                    <label>Achievement Pictures (Hold Ctrl / Shift to select multiple photos)</label>
+                    <input type="file" id="achievementImages" accept="image/*" multiple>
+                </div>
+                <div class="input-group full">
+                    <label>Set Password (for edit/delete authorization)</label>
+                    <input type="password" id="cadetPassword" placeholder="Create a secret password for this entry" required>
+                </div>
+                <div class="input-group full">
+                    <label>Achievement Description</label>
+                    <textarea id="achievementDescription" placeholder="Describe the achievement..." required></textarea>
+                </div>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">Submit Achievement</button>
+        </form>
+    </div>
+</section>
+
+<!-- VIEW ACHIEVEMENTS SECTION -->
+<section class="section" id="view">
+    <div class="section-title">
+        <h2>&#128221; Cadet Achievements</h2>
+        <p>Explore achievements added to the portal</p>
+    </div>
+    <input type="text" id="searchBox" class="search-box" placeholder="&#128065; Search cadet, roll number or achievement..." oninput="displayAchievements()">
+    <div id="achievementList" class="achievement-list"></div>
+</section>
+
+<!-- GALLERY SECTION -->
+<section class="section" id="gallery">
+    <div class="section-title">
+        <h2>&#127912; Cadet Achievement Gallery</h2>
+        <p>Visual gallery of cadet photos & achievements</p>
+    </div>
+    <div id="galleryList" class="gallery-grid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <img class="footer-logo" id="footerLogo" alt="Sainik School Nalanda Logo">
+    <h3>Cadet Achievement Portal</h3>
+    <p>Sainik School Nalanda</p>
+    <div class="footer-bullets">
+        <span>Showcase Excellence</span> &bull; 
+        <span>Inspire Others</span> &bull; 
+        <span>Celebrate Success</span>
+    </div>
+    <div class="developer">Developed by Cdt. Rudra Batra</div>
+</footer>
+
+<div class="toast" id="toast">Operation successful!</div>
+
+<script>
+/* ==========================================
+   OFFICIAL SAINIK SCHOOL NALANDA LOGO URL
+========================================== */
+const sainikLogoBase64 = "https://www.sainikschoolnalanda.edu.in/wp-content/uploads/2021/04/SSN-LOGO-1.png";
+
+// Set logo sources
+document.getElementById("navLogo").src = sainikLogoBase64;
+document.getElementById("heroLogo").src = sainikLogoBase64;
+document.getElementById("footerLogo").src = sainikLogoBase64;
+
+/* ==========================================
+   NAVIGATION & LINKS
+========================================== */
+const officialWebsite = "https://www.sainikschoolnalanda.edu.in/";
+document.getElementById("officialWebsiteLink").href = officialWebsite;
+
+function goTo(id){
+    document.getElementById(id).scrollIntoView({ behavior:"smooth" });
+}
+
+function visitOfficialWebsite(){
+    window.open(officialWebsite, "_blank");
+}
+
+/* ==========================================
+   ACHIEVEMENTS MANAGEMENT
+========================================== */
+let achievements = JSON.parse(localStorage.getItem("cadetAchievements")) || [];
+
+// Migration handling for single image uploads to array format
+achievements.forEach(item => {
+    if (!item.images) {
+        item.images = item.image ? [item.image] : [];
+    }
+});
+
+document.getElementById("achievementForm").addEventListener("submit", function(event){
+    event.preventDefault();
+
+    const editId = document.getElementById("editId").value;
+    const existingImgs = document.getElementById("existingImages").value ? JSON.parse(document.getElementById("existingImages").value) : [];
+    const cadetName = document.getElementById("cadetName").value.trim();
+    const rollNumber = document.getElementById("rollNumber").value.trim();
+    const title = document.getElementById("achievementTitle").value.trim();
+    const date = document.getElementById("achievementDate").value.trim();
+    const password = document.getElementById("cadetPassword").value.trim();
+    const description = document.getElementById("achievementDescription").value.trim();
+    const imageInput = document.getElementById("achievementImages");
+
+    const files = Array.from(imageInput.files);
+
+    const processSave = (newImages) => {
+        const finalImages = files.length > 0 ? newImages : existingImgs;
+
+        if(editId) {
+            const index = achievements.findIndex(item => item.id == editId);
+            if(index !== -1) {
+                achievements[index] = {
+                    id: Number(editId),
+                    cadetName,
+                    rollNumber,
+                    title,
+                    date,
+                    password,
+                    description,
+                    images: finalImages
+                };
+            }
+            document.getElementById("editId").value = "";
+            document.getElementById("existingImages").value = "";
+            document.getElementById("submitBtn").textContent = "Submit Achievement";
+        } else {
+            const achievement = {
+                id: Date.now(),
+                cadetName,
+                rollNumber,
+                title,
+                date,
+                password,
+                description,
+                images: finalImages
+            };
+            achievements.push(achievement);
+        }
+
+        try {
+            localStorage.setItem("cadetAchievements", JSON.stringify(achievements));
+        } catch(e) {
+            alert("Local storage capacity limit reached! Please use smaller or fewer image files.");
+        }
+
+        document.getElementById("achievementForm").reset();
+
+        updateDashboard();
+        displayAchievements();
+        displayGallery();
+        showToast("Achievement saved successfully!");
+
+        setTimeout(() => { goTo("view"); }, 700);
+    };
+
+    if (files.length > 0) {
+        let loadedCount = 0;
+        let imageArray = [];
+
+        files.forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imageArray.push(e.target.result);
+                loadedCount++;
+                if (loadedCount === files.length) {
+                    processSave(imageArray);
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    } else {
+        processSave([]);
+    }
+});
+
+function displayAchievements(){
+    const list = document.getElementById("achievementList");
+    const search = document.getElementById("searchBox").value.toLowerCase();
+
+    const filtered = achievements.filter(item => 
+        item.cadetName.toLowerCase().includes(search) ||
+        item.rollNumber.toLowerCase().includes(search) ||
+        item.title.toLowerCase().includes(search) ||
+        item.description.toLowerCase().includes(search)
+    );
+
+    if(filtered.length === 0){
+        list.innerHTML = `
+            <div class="empty">
+                <div style="font-size:50px; margin-bottom:10px;">&#128221;</div>
+                <h3>No achievements found</h3>
+                <p>Add a cadet achievement to see it here.</p>
+            </div>
+        `;
+        return;
+    }
+
+    list.innerHTML = "";
+    filtered.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "achievement";
+        
+        let imagesGrid = "";
+        if(item.images && item.images.length > 0){
+            imagesGrid = `<div class="card-images-grid">` + 
+                item.images.map(img => `<img src="${img}" alt="Achievement Photo" class="achievement-img" onclick="window.open('${img}')">`).join('') +
+                `</div>`;
+        }
+        
+        card.innerHTML = `
+            ${imagesGrid}
+            <h3>&#127942; ${escapeHTML(item.title)}</h3>
+            <p><strong>Cadet:</strong> ${escapeHTML(item.cadetName)}</p>
+            <p><strong>Roll Number:</strong> ${escapeHTML(item.rollNumber)}</p>
+            <p><strong>Date / Year:</strong> ${escapeHTML(item.date)}</p>
+            <p><strong>Description:</strong> ${escapeHTML(item.description)}</p>
+            <div class="card-actions">
+                <button class="edit-btn" onclick="editAchievement(${item.id})">&#9998; Edit</button>
+                <button class="delete-btn" onclick="deleteAchievement(${item.id})">&#128465; Delete</button>
+            </div>
+        `;
+        list.appendChild(card);
+    });
+}
+
+function displayGallery(){
+    const galleryList = document.getElementById("galleryList");
+    let allPhotos = [];
+
+    achievements.forEach(item => {
+        if(item.images && item.images.length > 0){
+            item.images.forEach(img => {
+                allPhotos.push({
+                    img: img,
+                    title: item.title,
+                    cadetName: item.cadetName,
+                    rollNumber: item.rollNumber
+                });
+            });
+        }
+    });
+
+    if(allPhotos.length === 0){
+        galleryList.innerHTML = `
+            <div class="empty">
+                <div style="font-size:50px; margin-bottom:10px;">&#127912;</div>
+                <h3>No Gallery Photos Yet</h3>
+                <p>Upload pictures when submitting achievements to view them here.</p>
+            </div>
+        `;
+        return;
+    }
+
+    galleryList.innerHTML = "";
+    allPhotos.forEach(photo => {
+        const card = document.createElement("div");
+        card.className = "gallery-card";
+        card.innerHTML = `
+            <img src="${photo.img}" alt="${escapeHTML(photo.title)}" onclick="window.open('${photo.img}')">
+            <div class="gallery-card-info">
+                <h4>${escapeHTML(photo.title)}</h4>
+                <p><strong>Cadet:</strong> ${escapeHTML(photo.cadetName)} (${escapeHTML(photo.rollNumber)})</p>
+            </div>
+        `;
+        galleryList.appendChild(card);
+    });
+}
+
+function editAchievement(id){
+    const item = achievements.find(a => a.id === id);
+    if(!item) return;
+
+    const inputPass = prompt("Enter password set during creation to edit:");
+    if(inputPass !== item.password){
+        alert("Incorrect password! Access denied.");
+        return;
+    }
+
+    document.getElementById("editId").value = item.id;
+    document.getElementById("existingImages").value = JSON.stringify(item.images || []);
+    document.getElementById("cadetName").value = item.cadetName;
+    document.getElementById("rollNumber").value = item.rollNumber;
+    document.getElementById("achievementTitle").value = item.title;
+    document.getElementById("achievementDate").value = item.date;
+    document.getElementById("cadetPassword").value = item.password;
+    document.getElementById("achievementDescription").value = item.description;
+
+    document.getElementById("submitBtn").textContent = "Update Achievement";
+    goTo("add");
+}
+
+function deleteAchievement(id){
+    const item = achievements.find(a => a.id === id);
+    if(!item) return;
+
+    const inputPass = prompt("Enter password to delete:");
+    if(inputPass !== item.password){
+        alert("Incorrect password! Access denied.");
+        return;
+    }
+
+    if(confirm("Are you sure you want to delete this achievement?")){
+        achievements = achievements.filter(a => a.id !== id);
+        localStorage.setItem("cadetAchievements", JSON.stringify(achievements));
+        updateDashboard();
+        displayAchievements();
+        displayGallery();
+        showToast("Achievement deleted!");
+    }
+}
+
+function updateDashboard(){
+    document.getElementById("totalAchievements").textContent = achievements.length;
+    const cadets = new Set(achievements.map(item => item.rollNumber));
+    document.getElementById("totalCadets").textContent = cadets.size;
+    const years = new Set(achievements.map(item => item.date));
+    document.getElementById("totalYears").textContent = years.size;
+}
+
+function showToast(msg = "Success!"){
+    const toast = document.getElementById("toast");
+    toast.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => { toast.classList.remove("show"); }, 2500);
+}
+
+function escapeHTML(text){
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Initial Run
+displayAchievements();
+displayGallery();
+updateDashboard();
+</script>
+
+</body>
+</html>
